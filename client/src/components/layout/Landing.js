@@ -47,7 +47,7 @@ const Landing = ({ isAuthenticated }) => {
               <span className="text-success" style={{ fontSize: "1.5rem" }}>
                 <strong> Meet </strong>{" "}
               </span>
-              the best mechanics
+              the best mechanics.
             </p>
             <div className="buttons">
               <Link to="/register" className="btn btn-primary">
