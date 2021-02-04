@@ -24,6 +24,8 @@ function authReducer(state = intialState, action) {
         loading: false,
         user: null,
       };
+    default:
+      return { state };
   }
 }
 
