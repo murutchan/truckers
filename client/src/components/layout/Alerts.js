@@ -3,12 +3,16 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Alert } from "react-bootstrap";
 
-const Alert = ({ alerts }) => {
+const ShowAlert = ({ alerts }) => {
   return (
     alerts !== null &&
     alerts.length > 0 &&
     alerts.map((alert) => (
-      <Alert key={alert.id} variant={alert.alertType}>
+      <Alert
+        key={alert.id}
+        variant={alert.alertType}
+        className="w-50 text-center mx-auto"
+      >
         {alert.message}
       </Alert>
     ))
@@ -23,4 +27,4 @@ const mapStateToProps = (state) => ({
   alerts: state.alert,
 });
 
-export default connect(mapStateToProps)(Alert);
+export default connect(mapStateToProps)(ShowAlert);
