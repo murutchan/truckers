@@ -12,5 +12,6 @@ app.use(express.json());
 //DEFINE ROUTES
 
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 module.exports = app;

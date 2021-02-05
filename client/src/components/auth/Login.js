@@ -5,14 +5,13 @@ import PropTypes from "prop-types";
 import "./register.styles.css";
 import { setAlert } from "../../actions/alert";
 
-const Login = ({ setAlert, registerUser }) => {
+const Login = ({ setAlert }) => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
   //destructuring formData
-  const { name, email, password } = formData;
+  const { email, password } = formData;
 
   //all input fields on change
   const onChange = (e) =>
@@ -28,7 +27,6 @@ const Login = ({ setAlert, registerUser }) => {
       <form onSubmit={onSubmit}>
         <h2>Sign In</h2>
         <p className="lead">You can always change your password</p>
-
         <div className="form-group">
           <div className="input-group">
             <span className="input-group-addon">
@@ -59,12 +57,12 @@ const Login = ({ setAlert, registerUser }) => {
             />
           </div>
         </div>
-
         <div className="form-group mt-5">
           <button type="submit" className="btn btn-primary btn-block btn-lg">
             Sign In
           </button>
         </div>
+
         <p className="small text-center">
           If you forgot your password
           <br />
@@ -72,7 +70,7 @@ const Login = ({ setAlert, registerUser }) => {
         </p>
       </form>
       <div className="text-center">
-        Dont have an account? <Link to="/login">Create account here</Link>.
+        Dont have an account? <Link to="/register">Create account here</Link>.
       </div>
     </div>
   );
