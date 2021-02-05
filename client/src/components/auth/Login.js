@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./register.styles.css";
-import { setAlert } from "../../actions/alert";
+
 import { loginUser } from "../../actions/auth";
 
 const Login = ({ isAuthenticated, loginUser }) => {
@@ -82,11 +82,11 @@ const Login = ({ isAuthenticated, loginUser }) => {
   );
 };
 Login.propTypes = {
-  setAlert: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
   loginUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
 });
-export default connect(mapStateToProps, { setAlert, loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

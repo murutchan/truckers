@@ -2,19 +2,17 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 const authController = require("../../controllers/authController");
-const authMiddleware = require("../../middleware/auth");
+const auth = require("../../middleware/auth");
 
 //get auth by token
 
-router.get("/", authMiddleware, authController.loadUser);
+router.get("/", auth, authController.loadUser);
 
 //sign in
 router.post(
   "/",
-  [
-    check("email", "Please include a valid email").isEmail(),
-    check("password", "Please enter matching password").exists(),
-  ],
+  check("email", "Please include a valid email").isEmail(),
+  check("password", "Please enter matching password").exists(),
   authController.loginUser
 );
 

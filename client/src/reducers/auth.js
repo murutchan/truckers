@@ -7,14 +7,14 @@ import {
   AUTH_ERROR,
 } from "../actions/types";
 
-const intialState = {
+const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   loading: true,
   user: null,
 };
 
-function authReducer(state = intialState, action) {
+function authReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {

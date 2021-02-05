@@ -7,11 +7,13 @@ import Login from "./components/auth/Login";
 import "./App.css";
 import ShowAlert from "./components/layout/Alerts";
 import Dashboard from "./components/dashboard/Dashboard";
+import Navigation from "./components/layout/Navigation";
 
 const App = () => {
   return (
     <Router>
       <div>
+        <Navigation />
         <ShowAlert />
         <Switch>
           <Route exact path="/" component={Landing} />
