@@ -9,6 +9,7 @@ import {
   LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
+  LOGOUT,
 } from "./types";
 import api from "../utils/api";
 
@@ -76,3 +77,8 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
   }
 };
+
+//logout a user
+
+// Logout
+export const logoutUser = () => ({ type: LOGOUT });

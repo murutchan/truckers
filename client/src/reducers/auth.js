@@ -5,6 +5,7 @@ import {
   LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
+  LOGOUT,
 } from "../actions/types";
 
 const initialState = {
@@ -42,6 +43,7 @@ function authReducer(state = initialState, action) {
         user: null,
       };
     case AUTH_ERROR:
+    case LOGOUT:
       return {
         ...state,
         token: null,

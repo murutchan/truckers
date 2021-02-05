@@ -1,28 +1,55 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logoutUser } from "../../actions/auth";
 
-const Navigation = () => {
+const Navigation = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
+  //navigation will be shown when user is signed in
+  const authLinks = (
+    <Nav className="ml-auto">
+      <Nav.Link to="/dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/Profile">Profile</Nav.Link>
+      <Nav.Link href="/" className="text-warning" onClick={logoutUser}>
+        Logout &#8227;
+      </Nav.Link>
+    </Nav>
+  );
   return (
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" sticky="top">
       <Navbar.Brand>
-        <Link to="/">DRIVERS connect</Link>
+        <Nav.Link href="/">DRIVERS connect</Nav.Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Link href="#features">Companies</Nav.Link>
-          <Nav.Link href="#1">Trucks</Nav.Link>
-          <Nav.Link href="#2">Mechanics</Nav.Link>
-          <Nav.Link href="#3">Food</Nav.Link>
-          <Nav.Link href="#4">Services</Nav.Link>
-          <Nav.Link href="/register" className="text-warning">
-            Sign up
-          </Nav.Link>
+        <Nav className={isAuthenticated ? "mr-auto" : "ml-auto"}>
+          <Nav.Link href="/features">Companies</Nav.Link>
+          <Nav.Link href="/trucks">Trucks</Nav.Link>
+          <Nav.Link href="/mechanics">Mechanics</Nav.Link>
+          <Nav.Link href="/food">Food</Nav.Link>
+          <Nav.Link href="/services">Other Services</Nav.Link>
+          {!isAuthenticated && (
+            <Nav>
+              <Nav.Link href="/login" className="text-warning">
+                Sign in
+              </Nav.Link>
+              <Nav.Link href="/register" className="text-info">
+                Sign up
+              </Nav.Link>
+            </Nav>
+          )}
         </Nav>
+        {isAuthenticated && !loading && authLinks}
       </Navbar.Collapse>
     </Navbar>
   );
 };
+Navigation.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, { logoutUser })(Navigation);
