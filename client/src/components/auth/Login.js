@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./register.styles.css";
 import { setAlert } from "../../actions/alert";
+import { loginUser } from "../../actions/auth";
 
-const Login = ({ setAlert }) => {
+const Login = ({ isAuthenticated, loginUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +21,12 @@ const Login = ({ setAlert }) => {
   //when submit button is pressed
   const onSubmit = (e) => {
     e.preventDefault();
+    loginUser(email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="signup-form">
@@ -77,6 +83,10 @@ const Login = ({ setAlert }) => {
 };
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Login);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth,
+});
+export default connect(mapStateToProps, { setAlert, loginUser })(Login);

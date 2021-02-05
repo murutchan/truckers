@@ -3,6 +3,8 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
 } from "../actions/types";
 
 const intialState = {
@@ -14,7 +16,15 @@ const intialState = {
 
 function authReducer(state = intialState, action) {
   const { type, payload } = action;
+
   switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       return {
@@ -27,6 +37,14 @@ function authReducer(state = intialState, action) {
     case LOGIN_FAIL:
       return {
         ...state,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+      };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        token: null,
         isAuthenticated: false,
         loading: false,
         user: null,

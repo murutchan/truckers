@@ -25,20 +25,37 @@ exports.loginUser = async (req, res) => {
         errors: [{ message: "Invalid credentials" }],
       });
     }
+    //As a response we send back a jwt token (for authorization)
     const payload = {
       user: {
         id: user.id,
       },
     };
-    jwt.sign(payload, config.get("jwtSecret")),
-      { expiresIn: 36000 },
+
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
+      { expiresIn: 40000 },
       (err, token) => {
         if (err) throw err;
-        //if user entered correct credentials we send him back a token
         res.json({ token });
-      };
+      }
+    );
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ errors: [{ message: "Server error" }] });
+  }
+};
+
+//authorize user by token
+exports.loadUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      errors: [{ message: "Server error" }],
+    });
   }
 };
