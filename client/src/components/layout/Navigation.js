@@ -8,7 +8,7 @@ const Navigation = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   //navigation will be shown when user is signed in
   const authLinks = (
     <Nav className="ml-auto">
-      <Nav.Link to="/dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/dashboard">Dashboard</Nav.Link>
       <Nav.Link href="/Profile">Profile</Nav.Link>
       <Nav.Link href="/" className="text-warning" onClick={logoutUser}>
         Logout &#8227;
@@ -23,7 +23,7 @@ const Navigation = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className={isAuthenticated ? "mr-auto" : "ml-auto"}>
-          <Nav.Link href="/features">Companies</Nav.Link>
+          <Nav.Link href="/companies">Companies</Nav.Link>
           <Nav.Link href="/trucks">Trucks</Nav.Link>
           <Nav.Link href="/mechanics">Mechanics</Nav.Link>
           <Nav.Link href="/food">Food</Nav.Link>

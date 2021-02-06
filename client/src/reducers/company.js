@@ -14,6 +14,11 @@ function companyReducer(state = initialState, action) {
         ...state,
         company: payload,
       };
+    case GET_COMPANIES:
+      return {
+        ...state,
+        companies: payload.data.data.companies,
+      };
     default:
       return state;
   }

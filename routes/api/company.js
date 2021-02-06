@@ -20,4 +20,6 @@ router.post(
   companyController.createCompany
 );
 
+router.get("/", companyController.getAllCompanies);
+
 module.exports = router;

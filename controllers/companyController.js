@@ -71,3 +71,17 @@ exports.createCompany = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
+//get ALL companies
+
+exports.getAllCompanies = async (req, res) => {
+  try {
+    const companies = await Company.find();
+    res.status(200).json({
+      data: { companies },
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("server Error");
+  }
+};
