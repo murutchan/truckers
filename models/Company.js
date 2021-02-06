@@ -9,24 +9,23 @@ const CompanySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    address: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    zip: {
-      type: Number,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
+  address: {
+    type: String,
+    required: true,
   },
+  city: {
+    type: String,
+    required: true,
+  },
+  zip: {
+    type: Number,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+
   phone: {
     type: Number,
     required: true,
@@ -46,38 +45,44 @@ const CompanySchema = new mongoose.Schema({
       type: Number,
     },
   },
-  perks: [
-    {
-      parking: {
-        type: Boolean,
-      },
-      bonuses: {
-        inspectionBonus: {
-          type: Number,
-        },
-        referralBonus: {
-          type: Number,
-        },
-        otherBonuses: {
-          type: String,
-        },
-      },
+  perks: {
+    parking: {
+      type: Boolean,
     },
-  ],
+
+    inspectionBonus: {
+      type: Number,
+    },
+    referralBonus: {
+      type: Number,
+    },
+    otherBonuses: {
+      type: String,
+    },
+  },
+
   fees: {
     companyFee: {
       type: Number,
     },
-    CargoInsurance: {
+    cargoInsurance: {
       type: Number,
     },
-    ELD: {
+    eld: {
       type: Number,
     },
-    TruckRent: {
+    truckRent: {
       type: Number,
     },
   },
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    },
+  ],
 });
 
 module.exports = Company = mongoose.model("company", CompanySchema);
