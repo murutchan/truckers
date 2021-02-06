@@ -13,12 +13,13 @@ const Companies = ({ companies, getAllCompanies }) => {
   return (
     <div className="container">
       {companies.map((company) => (
-        <div className="bg-secondary w-100">
+        <div className="w-100 mb-3">
           <h1>Company: {company.companyName}</h1>
           <p> phoneNumber: {company.phone} </p>
           <p> address: {company.address} </p>
           <p> City: {company.city} </p>
           <p> State: {company.state} </p>
+          <button className="btn btn-outline-primary btn-sm">&#8593; </button>
         </div>
       ))}
     </div>

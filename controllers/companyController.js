@@ -68,7 +68,7 @@ exports.createCompany = async (req, res) => {
     res.json(company);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({ errors: "Server Error" });
   }
 };
 
@@ -82,6 +82,8 @@ exports.getAllCompanies = async (req, res) => {
     });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("server Error");
+    res.status(500).json({
+      errors: "Server error",
+    });
   }
 };

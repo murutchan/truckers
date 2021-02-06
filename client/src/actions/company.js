@@ -1,3 +1,4 @@
+import { appendErrors } from "react-hook-form";
 import api from "../utils/api";
 import { setAlert } from "./alert";
 
@@ -31,11 +32,7 @@ export const getAllCompanies = () => async (dispatch) => {
       payload: companies,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      console.log(errors);
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-    }
+    console.log(err);
+    dispatch(setAlert(err.errors, "danger"));
   }
 };
