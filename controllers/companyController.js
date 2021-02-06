@@ -77,13 +77,18 @@ exports.createCompany = async (req, res) => {
 exports.getAllCompanies = async (req, res) => {
   try {
     const companies = await Company.find();
-    res.status(200).json({
-      data: { companies },
-    });
+    res.status(200).json(companies);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({
       errors: "Server error",
     });
   }
+};
+
+//add likes
+exports.likeCompany = async (req, res) => {
+  try {
+    const company = await Company;
+  } catch (err) {}
 };

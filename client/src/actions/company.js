@@ -13,12 +13,7 @@ export const createCompany = (formData) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      console.log(errors);
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-    }
+    dispatch(setAlert(err.errors, "danger"));
   }
 };
 
@@ -26,10 +21,10 @@ export const createCompany = (formData) => async (dispatch) => {
 
 export const getAllCompanies = () => async (dispatch) => {
   try {
-    const companies = await api.get("/company");
+    const res = await api.get("/company");
     dispatch({
       type: GET_COMPANIES,
-      payload: companies,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);

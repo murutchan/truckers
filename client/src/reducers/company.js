@@ -17,11 +17,13 @@ function companyReducer(state = initialState, action) {
     case GET_COMPANIES:
       return {
         ...state,
-        companies: payload.data.data.companies,
+        companies: payload,
       };
     default:
       return state;
   }
 }
+
+//add likes
 
 export default companyReducer;
