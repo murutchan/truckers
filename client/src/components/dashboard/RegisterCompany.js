@@ -1,12 +1,19 @@
 import React from "react";
 import "./dashboard.styles.scss";
 import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { createCompany } from "../../actions/company";
 
-const RegisterCompany = () => {
+const RegisterCompany = ({ createCompany }) => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
 
   const { register, handleSubmit } = useForm({});
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const { address, companyName, city, state, phone, email, zip } = data;
+    const formData = { address, companyName, city, state, phone, email, zip };
+    createCompany(formData);
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h3 className="text-center text-info">Company info</h3>
@@ -90,7 +97,7 @@ const RegisterCompany = () => {
         <div className="form-group col-md-2">
           <label>Zip</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             name="zip"
             ref={register}
@@ -225,5 +232,7 @@ const RegisterCompany = () => {
     </form>
   );
 };
-
-export default RegisterCompany;
+RegisterCompany.propTypes = {
+  createCompany: PropTypes.func.isRequired,
+};
+export default connect(null, { createCompany })(RegisterCompany);

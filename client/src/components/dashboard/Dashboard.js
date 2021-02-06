@@ -5,7 +5,7 @@ import RegisterCompany from "./RegisterCompany";
 
 const Dashboard = () => {
   return (
-    <div class="row">
+    <div className="row">
       <Link to="/registerCompany">
         <button className="btn btn-primary w-100">Register your company</button>
       </Link>
