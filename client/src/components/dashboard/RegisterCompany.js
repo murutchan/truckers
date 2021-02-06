@@ -1,10 +1,14 @@
 import React from "react";
 import "./dashboard.styles.scss";
+import { useForm } from "react-hook-form";
 
 const RegisterCompany = () => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
+
+  const { register, handleSubmit } = useForm({});
+  const onSubmit = (data) => console.log(data);
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h3 className="text-center text-info">Company info</h3>
       <hr />
       <div className="form-row mt-4">
@@ -13,60 +17,70 @@ const RegisterCompany = () => {
           <input
             type="name"
             className="form-control"
-            id="inputEmail4"
+            name="companyName"
             placeholder="Your company's name"
+            required
+            ref={register}
           />
         </div>
         <div className="form-group col-md-6">
-          <label for="inputPassword4">DOT Number</label>
+          <label>DOT Number</label>
           <input
             type="text"
             className="form-control"
             placeholder="dot number"
             name="dotnumber"
+            ref={register}
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label for="inputEmail4">Email address</label>
+          <label>Email address</label>
           <input
             type="email"
             className="form-control"
             name="email"
             placeholder="email"
+            ref={register}
           />
         </div>
         <div className="form-group col-md-6">
-          <label for="inputPassword4">Phone Number</label>
+          <label>Phone Number</label>
           <input
             type="number"
             className="form-control"
             placeholder="phone number"
-            name="phonenumber"
+            name="phone"
+            ref={register}
           />
         </div>
       </div>
 
       <div className="form-group">
-        <label for="inputAddress">Address</label>
+        <label>Address</label>
         <input
           type="text"
           className="form-control"
-          id="inputAddress"
           placeholder="1234 Main St"
           name="address"
+          ref={register}
         />
       </div>
 
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" className="form-control" name="city" />
+          <label>City</label>
+          <input
+            type="text"
+            className="form-control"
+            name="city"
+            ref={register}
+          />
         </div>
         <div className="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" className="form-control">
+          <label>State</label>
+          <select name="state" className="form-control" ref={register}>
             <option selected>Choose...</option>
             {states.map((state) => (
               <option key={state}>{state}</option>
@@ -74,8 +88,13 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" className="form-control" name="zip" />
+          <label>Zip</label>
+          <input
+            type="text"
+            className="form-control"
+            name="zip"
+            ref={register}
+          />
         </div>
       </div>
       <h3 className="text-center text-info mt-4">Driver requirements</h3>
@@ -83,9 +102,9 @@ const RegisterCompany = () => {
 
       <div className="form-row">
         <div className="form-group col-md-4">
-          <label for="inputCity">Minimum years of experience</label>
-          <select name="experience" className="form-control">
-            <option selected>Choose...</option>
+          <label>Minimum years of experience</label>
+          <select name="experience" className="form-control" ref={register}>
+            <option selected="selected">Choose...</option>
             <option>No experience required</option>
             <option>1-3 months experience</option>
             <option>3-6 months experience</option>
@@ -96,8 +115,8 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputState">Minimum Age</label>
-          <select name="age" className="form-control">
+          <label>Minimum Age</label>
+          <select name="age" className="form-control" ref={register}>
             <option selected>Select...</option>
             <option>21</option>
             <option>22</option>
@@ -106,8 +125,8 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputZip">Deposit ($$)</label>
-          <select name="deposit" className="form-control">
+          <label>Deposit ($$)</label>
+          <select name="deposit" className="form-control" ref={register}>
             <option selected>Select...</option>
             <option>No Deposit</option>
             <option>500$</option>
@@ -122,8 +141,8 @@ const RegisterCompany = () => {
       <hr />
       <div className="form-row">
         <div className="form-group col-md-4">
-          <label for="inputCity">Driver Referral Bonus</label>
-          <select name="referralBonus" className="form-control">
+          <label>Driver Referral Bonus</label>
+          <select name="referralBonus" className="form-control" ref={register}>
             <option selected>Choose...</option>
             <option>No bonus</option>
             <option>200$</option>
@@ -134,8 +153,12 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputState">Inspection Bonus</label>
-          <select name="inspectionBonus" className="form-control">
+          <label>Inspection Bonus</label>
+          <select
+            name="inspectionBonus"
+            className="form-control"
+            ref={register}
+          >
             <option selected>Select...</option>
             <option>100$</option>
             <option>150$</option>
@@ -144,8 +167,8 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputState">truck parking</label>
-          <select name="parking" className="form-control">
+          <label>truck parking</label>
+          <select name="parking" className="form-control" ref={register}>
             <option selected>Select...</option>
             <option>we have a parking lot</option>
             <option>we help you find a parking lot</option>
@@ -158,8 +181,8 @@ const RegisterCompany = () => {
       <hr />
       <div className="form-row">
         <div className="form-group col-md-4">
-          <label for="inputCity">Company fee from gross (%)</label>
-          <select name="companyFee" className="form-control">
+          <label>Company fee from gross (%)</label>
+          <select name="companyFee" className="form-control" ref={register}>
             <option selected>Choose...</option>
             <option>10</option>
             <option>12</option>
@@ -170,9 +193,13 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputCity">Cargo Insurance ($)</label>
-          <select name="cargoInsurance" className="form-control">
-            <option selected>Choose...</option>
+          <label>Cargo Insurance ($)</label>
+          <select
+            name="cargoInsurance"
+            className="form-control"
+            ref={register}
+            defaultValue="Choose ..."
+          >
             <option>200</option>
             <option>250</option>
             <option>300</option>
@@ -182,8 +209,8 @@ const RegisterCompany = () => {
           </select>
         </div>
         <div className="form-group col-md-4">
-          <label for="inputCity">Truck Rent ($)</label>
-          <select name="truckRent" className="form-control">
+          <label>Truck Rent ($)</label>
+          <select name="truckRent" className="form-control" ref={register}>
             <option selected>Choose...</option>
             <option>800</option>
             <option>900</option>

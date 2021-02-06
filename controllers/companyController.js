@@ -11,11 +11,10 @@ exports.createCompany = async (req, res) => {
   }
 
   const {
-    name,
+    companyName,
     address,
     city,
     zip,
-    country,
     phone,
     email,
     age,
@@ -29,17 +28,19 @@ exports.createCompany = async (req, res) => {
     cargoInsurance,
     eld,
     truckRent,
+    dotNumber,
   } = req.body;
 
   //Build Company Objects
   const companyFields = {};
   companyFields.user = req.user.id;
 
-  if (name) companyFields.name = name;
+  if (companyName) companyFields.companyName = companyName;
+  if (dotNumber) companyFields.dotNumber = dotNumber;
+
   if (address) companyFields.address = address;
   if (city) companyFields.city = city;
   if (zip) companyFields.zip = zip;
-  if (country) companyFields.country = country;
   if (phone) companyFields.phone = phone;
   if (email) companyFields.email = email;
 

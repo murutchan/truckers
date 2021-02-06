@@ -6,9 +6,12 @@ const CompanySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user",
   },
-  name: {
+  companyName: {
     type: String,
     required: true,
+  },
+  dotNumber: {
+    type: String,
   },
   address: {
     type: String,
