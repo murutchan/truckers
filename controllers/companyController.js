@@ -9,6 +9,7 @@ exports.createCompany = async (req, res) => {
       errors: errors.array(),
     });
   }
+
   const {
     name,
     address,

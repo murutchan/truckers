@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const CompanySchema = new mongoose.Schema({
+const CompanySchema = new Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "user",
   },
   name: {
@@ -19,10 +20,6 @@ const CompanySchema = new mongoose.Schema({
   },
   zip: {
     type: Number,
-    required: true,
-  },
-  country: {
-    type: String,
     required: true,
   },
 
@@ -42,7 +39,7 @@ const CompanySchema = new mongoose.Schema({
       type: String,
     },
     deposit: {
-      type: Number,
+      type: String,
     },
   },
   perks: {
