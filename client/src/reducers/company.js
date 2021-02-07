@@ -1,4 +1,4 @@
-import { GET_COMPANY, GET_COMPANIES } from "../actions/types";
+import { GET_COMPANY, GET_COMPANIES, UPDATE_LIKES } from "../actions/types";
 
 const initialState = {
   company: null,
@@ -18,6 +18,16 @@ function companyReducer(state = initialState, action) {
       return {
         ...state,
         companies: payload,
+      };
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        companies: state.companies.map((company) =>
+          company._id === payload.id
+            ? { ...company, likes: payload.likes }
+            : company
+        ),
+        loading: false,
       };
     default:
       return state;

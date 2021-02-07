@@ -24,5 +24,7 @@ router.get("/", companyController.getAllCompanies);
 
 //like buttons @route PUT api/company/like/:id
 router.put("/like/:id", auth, companyController.likeCompany);
+//unlike @route PUT api/company/unlike/:id
+router.put("/unlike/:id", auth, companyController.unlikeCompany);
 
 module.exports = router;

@@ -9,3 +9,5 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const GET_COMPANY = "GET_COMPANY";
 export const GET_COMPANIES = "GET_COMPANIES";
+export const UPDATE_LIKES = "UPDATE_LIKES";
+export const COMPANY_ERROR = "COMPANY_ERROR";
