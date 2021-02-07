@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const Company = require("../models/Company");
+const { post } = require("../routes/api/company");
 
 //create or update company
 exports.createCompany = async (req, res) => {
@@ -89,6 +90,21 @@ exports.getAllCompanies = async (req, res) => {
 //add likes
 exports.likeCompany = async (req, res) => {
   try {
-    const company = await Company;
-  } catch (err) {}
+    const company = await Company.findById(req.params.id);
+    //we check if post was already liked
+    if (
+      company.likes.filter((like) => like.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ errors: "Company was already liked" });
+    }
+    company.likes.unshift({ user: req.user.id });
+    await company.save();
+    res.json(company.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      errors: "server error",
+    });
+  }
 };

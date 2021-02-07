@@ -19,7 +19,10 @@ router.post(
   ],
   companyController.createCompany
 );
-
+//get all companies
 router.get("/", companyController.getAllCompanies);
+
+//like buttons @route PUT api/company/like/:id
+router.put("/like/:id", auth, companyController.likeCompany);
 
 module.exports = router;
