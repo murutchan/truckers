@@ -17,7 +17,7 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
       {companies.map((company) => (
         <div className="w-50 mb-3  bg-info border">
           <h1 className="text-light">Company: {company.companyName}</h1>
-          <p> phoneNumber: {company.phone} </p>
+          <p className="text-danger"> phoneNumber: {company.phone} </p>
           <p> address: {company.address} </p>
           <p> City: {company.city} </p>
           <p> State: {company.state} </p>

@@ -56,7 +56,7 @@ const Landing = ({ isAuthenticated }) => {
               <Link to="/login" className="btn btn-light">
                 Login
               </Link>
-              <Link>
+              <Link to="/companies">
                 <h5 className="text-muted mt-5">skip &#10140;</h5>
               </Link>
             </div>
