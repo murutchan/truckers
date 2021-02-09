@@ -39,7 +39,7 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
 
               <hr />
               <h3>
-                {company.fees.companyFee ? company.fees.companyFee : "unknown"}
+                {company.fees.companyFee ? company.fees.companyFee : "unknown"}%
               </h3>
             </div>
             <div className="col-md-3 inner-card">

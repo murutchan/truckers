@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const { isValidObjectId } = require("mongoose");
 const Company = require("../models/Company");
 
 //create or update company
@@ -83,6 +84,21 @@ exports.getAllCompanies = async (req, res) => {
     res.status(500).json({
       errors: "Server error",
     });
+  }
+};
+
+//get user companies only
+exports.getUserCompanies = async (req, res) => {
+  try {
+    const company = await Company.find({ user: req.params.id });
+    if (company) {
+      res.status(200).json(company);
+    } else {
+      res.status(404).send("No company found ");
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send("Not valid request");
   }
 };
 

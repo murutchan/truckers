@@ -36,6 +36,17 @@ export const getAllCompanies = () => async (dispatch) => {
   }
 };
 
+//get single user companies
+export const getUserCompanies = (id) => async (dispatch) => {
+  try {
+    const res = await api.get(`/company/${id}`);
+    dispatch({ type: GET_COMPANIES, payload: res.data });
+  } catch (err) {
+    console.log(err);
+    dispatch(setAlert(err.message, "danger"));
+  }
+};
+
 //LIKE A COMPANY
 export const addLike = (id) => async (dispatch) => {
   try {

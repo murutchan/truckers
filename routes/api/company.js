@@ -21,6 +21,7 @@ router.post(
 );
 //get all companies
 router.get("/", companyController.getAllCompanies);
+router.get("/:id", auth, companyController.getUserCompanies);
 
 //like buttons @route PUT api/company/like/:id
 router.put("/like/:id", auth, companyController.likeCompany);
