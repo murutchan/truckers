@@ -11,11 +11,12 @@ const Dashboard = ({
   companies,
   auth: { user },
   deleteCompany,
+  history,
 }) => {
   const id = user._id;
   useEffect(() => {
     getUserCompanies(id);
-  }, []);
+  }, [getUserCompanies]);
 
   console.log(companies);
   console.log(user);
@@ -34,16 +35,26 @@ const Dashboard = ({
       </div>
 
       {companies.map((company) => (
-        <div className="row border-bottom pb-2 w-75 mb-4" key={company._id}>
+        <div className="row border-bottom pb-2 w-100 mb-4" key={company._id}>
           <div className="col-sm-6">
             <h5>{company.companyName}</h5>
           </div>
-          <div className="col-md-5 ">
+          <div className="col-lg-5 ">
             <button className="btn btn-sm btn-info">Edit</button>
 
             <button
               className="btn btn-sm btn-danger"
-              onClick={(e) => deleteCompany(company._id)}
+              onClick={(e) => {
+                e.preventDefault();
+                if (
+                  window.confirm(
+                    `Are you sure you wish to delete your company ${company.companyName}?`
+                  )
+                ) {
+                  deleteCompany(company._id, history);
+                  window.location.reload(true);
+                }
+              }}
             >
               Delete
             </button>

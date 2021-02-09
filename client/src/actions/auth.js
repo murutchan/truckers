@@ -24,7 +24,7 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    err.response.data && dispatch(setAlert(err.response.data, "danger"));
+    dispatch(setAlert(err.data, "danger"));
     console.log(err);
   }
 };
@@ -65,7 +65,7 @@ export const loginUser = (email, password) => async (dispatch) => {
   } catch (err) {
     console.log(err);
 
-    dispatch(setAlert(err.response.data, "danger"));
+    dispatch(setAlert(err.data, "danger"));
   }
 };
 

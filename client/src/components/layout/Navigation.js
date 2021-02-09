@@ -10,7 +10,16 @@ const Navigation = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
     <Nav className="ml-auto">
       <Nav.Link href="/dashboard">Dashboard</Nav.Link>
       <Nav.Link href="/Profile">Profile</Nav.Link>
-      <Nav.Link href="/" className="text-warning" onClick={logoutUser}>
+      <Nav.Link
+        href="/"
+        className="text-warning"
+        onClick={(e) => {
+          e.preventDefault();
+          if (window.confirm("Please confirm you are logging out")) {
+            logoutUser();
+          }
+        }}
+      >
         Logout &#8227;
       </Nav.Link>
     </Nav>

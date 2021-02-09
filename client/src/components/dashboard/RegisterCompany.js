@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { createCompany } from "../../actions/company";
 import { Redirect } from "react-router-dom";
 
-const RegisterCompany = ({ createCompany }) => {
+const RegisterCompany = ({ createCompany, history }) => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
 
   const { register, handleSubmit } = useForm({});
@@ -37,7 +37,7 @@ const RegisterCompany = ({ createCompany }) => {
       age,
       experience,
     };
-    createCompany(formData);
+    createCompany(formData, history);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -135,8 +135,15 @@ const RegisterCompany = ({ createCompany }) => {
       <div className="form-row">
         <div className="form-group col-md-4">
           <label>Minimum years of experience</label>
-          <select name="experience" className="form-control" ref={register}>
-            <option selected="selected">Choose...</option>
+          <select
+            name="experience"
+            className="form-control"
+            ref={register}
+            defaultValue="..hello"
+          >
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>No experience required</option>
             <option>1-3 months experience</option>
             <option>3-6 months experience</option>
@@ -149,7 +156,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>Minimum Age</label>
           <select name="age" className="form-control" ref={register}>
-            <option selected>Select...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>21</option>
             <option>22</option>
             <option>23</option>
@@ -159,7 +168,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>Deposit ($$)</label>
           <select name="deposit" className="form-control" ref={register}>
-            <option selected>Select...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>No Deposit</option>
             <option>500$</option>
             <option>1000$</option>
@@ -175,7 +186,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>Driver Referral Bonus</label>
           <select name="referralBonus" className="form-control" ref={register}>
-            <option selected>Choose...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>No bonus</option>
             <option>200$</option>
             <option>250$</option>
@@ -191,7 +204,9 @@ const RegisterCompany = ({ createCompany }) => {
             className="form-control"
             ref={register}
           >
-            <option selected>Select...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>100$</option>
             <option>150$</option>
             <option>200$</option>
@@ -201,7 +216,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>truck parking</label>
           <select name="parking" className="form-control" ref={register}>
-            <option selected>Select...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>we have a parking lot</option>
             <option>we help you find a parking lot</option>
             <option>we will pay for your parking</option>
@@ -215,7 +232,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>Company fee from gross (%)</label>
           <select name="companyFee" className="form-control" ref={register}>
-            <option selected>Choose...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>10</option>
             <option>12</option>
             <option>14</option>
@@ -226,12 +245,10 @@ const RegisterCompany = ({ createCompany }) => {
         </div>
         <div className="form-group col-md-4">
           <label>Cargo Insurance ($)</label>
-          <select
-            name="cargoInsurance"
-            className="form-control"
-            ref={register}
-            defaultValue="Choose ..."
-          >
+          <select name="cargoInsurance" className="form-control" ref={register}>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>200</option>
             <option>250</option>
             <option>300</option>
@@ -243,7 +260,9 @@ const RegisterCompany = ({ createCompany }) => {
         <div className="form-group col-md-4">
           <label>Truck Rent ($)</label>
           <select name="truckRent" className="form-control" ref={register}>
-            <option selected>Choose...</option>
+            <option value="none" selected disabled>
+              Select an Option
+            </option>
             <option>800</option>
             <option>900</option>
             <option>1000</option>

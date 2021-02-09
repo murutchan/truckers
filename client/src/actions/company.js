@@ -10,13 +10,19 @@ import {
 } from "./types";
 
 //create a company (dont forget about history and edit)
-export const createCompany = (formData) => async (dispatch) => {
+export const createCompany = (formData, history, edit = false) => async (
+  dispatch
+) => {
   try {
     const res = await api.post("/company", formData);
     dispatch({
       type: GET_COMPANY,
       payload: res.data,
     });
+    dispatch(setAlert(edit ? "Company Updated" : "Company Created", "success"));
+    if (!edit) {
+      history.push("/dashboard");
+    }
   } catch (err) {
     dispatch(setAlert(err.response.data, "danger"));
   }
@@ -26,7 +32,7 @@ export const createCompany = (formData) => async (dispatch) => {
 export const deleteCompany = (id) => async (dispatch) => {
   try {
     const res = await api.post(`/company/${id}`);
-    dispatch(setAlert("Successfully deleted", "success"));
+    dispatch(setAlert("Company Deleted", "success"));
   } catch (err) {
     console.log({ err });
     dispatch(setAlert(err.response.data, "danger"));
