@@ -31,7 +31,7 @@ export const createCompany = (formData, history, edit = false) => async (
 //delete a company
 export const deleteCompany = (id) => async (dispatch) => {
   try {
-    const res = await api.post(`/company/${id}`);
+    const res = await api.delete(`/company/${id}`);
     dispatch(setAlert("Company Deleted", "success"));
   } catch (err) {
     console.log({ err });
@@ -62,6 +62,21 @@ export const getUserCompanies = (id) => async (dispatch) => {
     console.log(err);
 
     dispatch(setAlert(err.response, "danger"));
+  }
+};
+
+//get single company
+
+export const getCompany = (id) => async (dispatch) => {
+  try {
+    const res = await api.get(`/company/${id}`);
+    dispatch({
+      type: GET_COMPANY,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch(setAlert(err.response.data, "danger"));
   }
 };
 

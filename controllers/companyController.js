@@ -123,6 +123,25 @@ exports.deleteCompany = async (req, res) => {
   }
 };
 
+//get a single company
+exports.getCompany = async (req, res) => {
+  try {
+    const company = await Company.findById(req.params.id);
+    if (company) {
+      return res.status(200).json({
+        status: "success",
+        data: {
+          company,
+        },
+      });
+    } else {
+      return res.status(404).send("No company found");
+    }
+  } catch (err) {
+    res.status(400).send("Server error");
+  }
+};
+
 //add likes
 exports.likeCompany = async (req, res) => {
   try {

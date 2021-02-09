@@ -6,6 +6,7 @@ import Login from "../auth/Login";
 import ShowAlert from "../layout/Alerts";
 import Dashboard from "../dashboard/Dashboard";
 import RegisterCompany from "../dashboard/RegisterCompany";
+import EditCompany from "../dashboard/RegisterCompany";
 import Companies from "../company/Companies";
 
 const Routes = () => {
@@ -22,6 +23,7 @@ const Routes = () => {
           path="/registerCompany"
           component={RegisterCompany}
         />
+        <PrivateRoute exact path="/editCompany" component={EditCompany} />
       </Switch>
     </section>
   );

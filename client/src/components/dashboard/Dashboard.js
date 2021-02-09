@@ -40,7 +40,9 @@ const Dashboard = ({
             <h5>{company.companyName}</h5>
           </div>
           <div className="col-lg-5 ">
-            <button className="btn btn-sm btn-info">Edit</button>
+            <Link to="/editCompany">
+              <button className="btn btn-sm btn-info">Edit</button>
+            </Link>
 
             <button
               className="btn btn-sm btn-danger"
