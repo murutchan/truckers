@@ -7,23 +7,17 @@ const User = require("../models/User");
 exports.loginUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
+    return res.status(400).send("Please enter correct credentials");
   }
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        errors: [{ message: "please enter right credentials" }],
-      });
+      return res.status(400).send("Please enter correct credentials");
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({
-        errors: [{ message: "Invalid credentials" }],
-      });
+      return res.status(400).send("Please enter correct credentials");
     }
     //As a response we send back a jwt token (for authorization)
     const payload = {
@@ -43,7 +37,7 @@ exports.loginUser = async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ errors: [{ message: "Server error" }] });
+    res.status(500).send("Server error");
   }
 };
 

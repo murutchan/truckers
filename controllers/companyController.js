@@ -69,7 +69,7 @@ exports.createCompany = async (req, res) => {
     res.json(company);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ errors: "Server Error" });
+    res.status(500).send("server error");
   }
 };
 
@@ -81,9 +81,7 @@ exports.getAllCompanies = async (req, res) => {
     res.status(200).json(companies);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({
-      errors: "Server error",
-    });
+    res.status(500).send("server error");
   }
 };
 
@@ -99,7 +97,7 @@ exports.getUserCompanies = async (req, res) => {
   } catch (err) {
     console.error(err.message);
     if (err.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Post not found" });
+      return res.status(404).send("Post not found");
     }
   }
 };
@@ -120,9 +118,7 @@ exports.likeCompany = async (req, res) => {
     res.json(company.likes);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({
-      errors: "server error",
-    });
+    res.status(500).send("Server error");
   }
 };
 
@@ -138,7 +134,7 @@ exports.unlikeCompany = async (req, res) => {
       company.likes.filter((like) => like.user.toString() === req.user.id)
         .length === 0
     ) {
-      return res.status(400).json({ errors: "Company has not been liked yet" });
+      return res.status(400).send("Company has not been liked yet");
     }
     //get remove index
     const removeIndex = company.likes
@@ -149,6 +145,6 @@ exports.unlikeCompany = async (req, res) => {
     res.json(company.likes);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ errors: "server Error" });
+    res.status(500).send("Server error");
   }
 };

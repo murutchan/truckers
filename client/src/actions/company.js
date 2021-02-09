@@ -18,7 +18,7 @@ export const createCompany = (formData) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch(setAlert(err.errors, "danger"));
+    dispatch(setAlert(err.response.data, "danger"));
   }
 };
 
@@ -32,8 +32,7 @@ export const getAllCompanies = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
-    dispatch(setAlert(err.errors, "danger"));
+    // dispatch(setAlert(err.response.data, "danger"));
   }
 };
 
@@ -44,6 +43,7 @@ export const getUserCompanies = (id) => async (dispatch) => {
     dispatch({ type: GET_COMPANIES, payload: res.data });
   } catch (err) {
     console.log(err);
+    dispatch(setAlert(err.response.data, "danger"));
   }
 };
 
@@ -56,11 +56,9 @@ export const addLike = (id) => async (dispatch) => {
       payload: { id, likes: res.data },
     });
   } catch (err) {
-    dispatch(setAlert(err.message, "danger"));
-    dispatch({
-      type: COMPANY_ERROR,
-      payload: { err },
-    });
+    console.log(err.message);
+    console.log({ err });
+    dispatch(setAlert(err.response.data, "danger"));
   }
 };
 
@@ -74,10 +72,6 @@ export const removeLike = (id) => async (dispatch) => {
       payload: { id, likes: res.data },
     });
   } catch (err) {
-    dispatch(setAlert(err.message, "danger"));
-    // dispatch({
-    //   type: COMPANY_ERROR,
-    //   payload: { err },
-    // });
+    dispatch(setAlert(err.response.data, "danger"));
   }
 };

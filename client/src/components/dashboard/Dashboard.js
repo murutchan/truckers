@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./dashboard.styles.scss";
+// import "./dashboard.styles.scss";
 
 const Dashboard = () => {
-  // const id = user._id;
-  // useEffect(() => {
-  //   getUserCompanies(id);
-  // }, []);
-
   return (
     <div className="container">
       <div className="row">
@@ -25,16 +20,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-// Dashboard.propTypes = {
-//   getUserCompanies: PropTypes.func.isRequired,
-//   companies: PropTypes.array.isRequired,
-//   user: PropTypes.object,
-// };
-
-// const mapStateToProps = (state) => ({
-//   companies: state.company.companies,
-//   user: state.auth.user,
-// });
 
 export default Dashboard;
