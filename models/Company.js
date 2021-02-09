@@ -36,7 +36,7 @@ const CompanySchema = new Schema({
   },
   requirements: {
     age: {
-      type: Number,
+      type: String,
     },
     experience: {
       type: String,
@@ -51,10 +51,10 @@ const CompanySchema = new Schema({
     },
 
     inspectionBonus: {
-      type: Number,
+      type: String,
     },
     referralBonus: {
-      type: Number,
+      type: String,
     },
     otherBonuses: {
       type: String,
@@ -63,16 +63,16 @@ const CompanySchema = new Schema({
 
   fees: {
     companyFee: {
-      type: Number,
+      type: String,
     },
     cargoInsurance: {
-      type: Number,
+      type: String,
     },
     eld: {
-      type: Number,
+      type: String,
     },
     truckRent: {
-      type: Number,
+      type: String,
     },
   },
   likes: [

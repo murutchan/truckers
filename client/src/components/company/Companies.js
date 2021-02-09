@@ -14,7 +14,7 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
   return (
     <div className="container">
       {companies.map((company) => (
-        <div className=" container mb-3 border text-center">
+        <div className="container company mb-3 border text-center">
           <div className="row mx-auto">
             <h2 className="text-success mt-3 mx-auto">{company.companyName}</h2>
           </div>
@@ -33,9 +33,46 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
               </p>
             </div>
           </div>
+          <div className="row">
+            <div className="col-md-3 inner-card">
+              <p>Company fee</p>
+
+              <hr />
+              <h3>
+                {company.fees.companyFee ? company.fees.companyFee : "unknown"}
+              </h3>
+            </div>
+            <div className="col-md-3 inner-card">
+              <p>Referral Bonus</p>
+              <hr />
+              <h3>
+                {company.perks.referralBonus
+                  ? company.perks.referralBonus
+                  : "unknown"}
+              </h3>
+            </div>
+            <div className="col-md-3 inner-card">
+              <p>Minimum age</p>
+              <hr />
+              <h3>
+                {company.requirements.age
+                  ? company.requirements.age
+                  : "unknown"}
+              </h3>
+            </div>
+            <div className="col-md-3 inner-card">
+              <p>Minimum experience</p>
+              <hr />
+              <h5>
+                {company.requirements.experience
+                  ? company.requirements.experience
+                  : "unknown"}
+              </h5>
+            </div>
+          </div>
 
           <button
-            className="btn btn-light btn-sm mb-3"
+            className="btn btn-light btn-sm mb-3 ml-auto"
             onClick={(e) => addLike(company._id)}
           >
             <i class="fas fa-thumbs-up"></i>{" "}

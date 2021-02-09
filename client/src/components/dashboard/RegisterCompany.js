@@ -10,8 +10,32 @@ const RegisterCompany = ({ createCompany }) => {
 
   const { register, handleSubmit } = useForm({});
   const onSubmit = (data) => {
-    const { address, companyName, city, state, phone, email, zip } = data;
-    const formData = { address, companyName, city, state, phone, email, zip };
+    const {
+      address,
+      companyName,
+      city,
+      state,
+      phone,
+      email,
+      zip,
+      companyFee,
+      referralBonus,
+      age,
+      experience,
+    } = data;
+    const formData = {
+      address,
+      companyName,
+      city,
+      state,
+      phone,
+      email,
+      zip,
+      companyFee,
+      referralBonus,
+      age,
+      experience,
+    };
     createCompany(formData);
   };
   return (
