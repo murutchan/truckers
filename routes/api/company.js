@@ -23,6 +23,9 @@ router.post(
 router.get("/", companyController.getAllCompanies);
 router.get("/:id", auth, companyController.getUserCompanies);
 
+//delete or update
+router.post("/:id", auth, companyController.deleteCompany);
+
 //like buttons @route PUT api/company/like/:id
 router.put("/like/:id", auth, companyController.likeCompany);
 //unlike @route PUT api/company/unlike/:id

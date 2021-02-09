@@ -22,6 +22,17 @@ export const createCompany = (formData) => async (dispatch) => {
   }
 };
 
+//delete a company
+export const deleteCompany = (id) => async (dispatch) => {
+  try {
+    const res = await api.post(`/company/${id}`);
+    dispatch(setAlert("Successfully deleted", "success"));
+  } catch (err) {
+    console.log({ err });
+    dispatch(setAlert(err.response.data, "danger"));
+  }
+};
+
 //GET ALL COMPANIES
 
 export const getAllCompanies = () => async (dispatch) => {

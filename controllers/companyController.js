@@ -102,6 +102,27 @@ exports.getUserCompanies = async (req, res) => {
   }
 };
 
+//delete company
+exports.deleteCompany = async (req, res) => {
+  try {
+    const company = await Company.findById(req.params.id);
+    if (!company) {
+      return res.status(400).send("no company found");
+    }
+    if (company.user.toString() !== req.user.id) {
+      return res.status(401).send("USer not authorized");
+    }
+    await company.remove();
+    res.status(200).send("company deleted successfully");
+  } catch (err) {
+    if (err.kind === "ObjectId") {
+      return res.status(404).send("Post not found");
+    }
+    console.error(err.message);
+    res.status(400).send("Server error");
+  }
+};
+
 //add likes
 exports.likeCompany = async (req, res) => {
   try {
