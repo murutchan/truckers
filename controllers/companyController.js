@@ -128,12 +128,7 @@ exports.getCompany = async (req, res) => {
   try {
     const company = await Company.findById(req.params.id);
     if (company) {
-      return res.status(200).json({
-        status: "success",
-        data: {
-          company,
-        },
-      });
+      return res.status(200).json({ data: { company } });
     } else {
       return res.status(404).send("No company found");
     }

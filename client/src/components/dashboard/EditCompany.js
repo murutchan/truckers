@@ -16,9 +16,7 @@ const EditCompany = ({
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
   const { register, handleSubmit } = useForm({});
 
-  useEffect(() => {
-    getCompany(company._id);
-  }, []);
+  useEffect(() => {}, []);
   const onSubmit = (data) => {
     const {
       address,

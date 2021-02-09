@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getUserCompanies } from "../../actions/company";
 import { deleteCompany } from "../../actions/company";
+import { getCompany } from "../../actions/company";
 
 const Dashboard = ({
   getUserCompanies,
   companies,
+  getCompany,
   auth: { user },
   deleteCompany,
   history,
@@ -18,8 +20,6 @@ const Dashboard = ({
     getUserCompanies(id);
   }, [getUserCompanies]);
 
-  console.log(companies);
-  console.log(user);
   return (
     <div className="container w-75">
       <div className="row">
@@ -41,7 +41,12 @@ const Dashboard = ({
           </div>
           <div className="col-lg-5 ">
             <Link to="/editCompany">
-              <button className="btn btn-sm btn-info">Edit</button>
+              <button
+                className="btn btn-sm btn-info"
+                onClick={(e) => getCompany(company._id)}
+              >
+                Edit
+              </button>
             </Link>
 
             <button
@@ -79,6 +84,8 @@ const mapStateToProps = (state) => ({
   companies: state.company.companies,
 });
 
-export default connect(mapStateToProps, { getUserCompanies, deleteCompany })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  getUserCompanies,
+  deleteCompany,
+  getCompany,
+})(Dashboard);
