@@ -52,7 +52,7 @@ function authReducer(state = initialState, action) {
         user: null,
       };
     default:
-      return { state };
+      return state;
   }
 }
 

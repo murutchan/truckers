@@ -6,6 +6,7 @@ import {
   GET_COMPANIES,
   COMPANY_ERROR,
   UPDATE_LIKES,
+  USER_LOADED,
 } from "./types";
 
 //create a company (dont forget about history and edit)
@@ -43,7 +44,6 @@ export const getUserCompanies = (id) => async (dispatch) => {
     dispatch({ type: GET_COMPANIES, payload: res.data });
   } catch (err) {
     console.log(err);
-    dispatch(setAlert(err.message, "danger"));
   }
 };
 

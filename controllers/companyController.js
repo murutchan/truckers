@@ -98,7 +98,9 @@ exports.getUserCompanies = async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(400).send("Not valid request");
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
   }
 };
 

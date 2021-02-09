@@ -7,9 +7,9 @@ import SemiTruck from "../video/semitruck.mp4";
 import Driver from "../../img/Driver.png";
 
 const Landing = ({ isAuthenticated }) => {
-  //   if (isAuthenticated) {
-  //     return <Redirect to="/dashboard" />;
-  //   }
+  // if (isAuthenticated) {
+  //   return <Redirect to="/dashboard" />;
+  // }
 
   return (
     <div>
@@ -68,9 +68,11 @@ const Landing = ({ isAuthenticated }) => {
 };
 
 Landing.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({ isAuthenticated: state.auth });
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 export default connect(mapStateToProps)(Landing);
