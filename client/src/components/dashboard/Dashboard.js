@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getUserCompanies } from "../../actions/company";
 
-// import "./dashboard.styles.scss";
+const Dashboard = ({ getUserCompanies, companies, auth: { user } }) => {
+  const id = user._id;
+  useEffect(() => {
+    getUserCompanies(id);
+  }, [getUserCompanies]);
 
-const Dashboard = () => {
+  console.log(companies);
+  console.log(user);
   return (
-    <div className="container">
+    <div className="container w-75">
       <div className="row">
         <Link to="/registerCompany">
           <button className="btn btn-primary w-100">
@@ -14,11 +23,35 @@ const Dashboard = () => {
         </Link>
       </div>
       <div className="row mt-5 text-info">
-        <h5>Listed companies</h5>
+        <h5 className="mb-5">Listed companies</h5>
         <hr />
       </div>
+
+      {companies.map((company) => (
+        <div className="row border-bottom pb-2 w-75" key={company._id}>
+          <div className="col-sm-6">
+            <h5>{company.companyName}</h5>
+          </div>
+          <div className="col-md-5 ">
+            <button className="btn btn-sm btn-info">Edit</button>
+
+            <button className="btn btn-sm btn-danger">Delete</button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default Dashboard;
+Dashboard.propTypes = {
+  auth: PropTypes.object,
+  companies: PropTypes.array,
+  getUserCompanies: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  companies: state.company.companies,
+});
+
+export default connect(mapStateToProps, { getUserCompanies })(Dashboard);

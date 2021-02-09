@@ -43,7 +43,8 @@ export const getUserCompanies = (id) => async (dispatch) => {
     dispatch({ type: GET_COMPANIES, payload: res.data });
   } catch (err) {
     console.log(err);
-    dispatch(setAlert(err.response.data, "danger"));
+
+    dispatch(setAlert(err.response, "danger"));
   }
 };
 

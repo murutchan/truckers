@@ -14,21 +14,24 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
   return (
     <div className="container">
       {companies.map((company) => (
-        <div className="container company mb-3 border text-center">
+        <div
+          className="container company mb-3 border text-center"
+          key={company._id}
+        >
           <div className="row mx-auto">
             <h2 className="text-success mt-3 mx-auto">{company.companyName}</h2>
           </div>
           <div className="row">
             <div className="col-md-6">
               <p>
-                <i class="fas fa-map-marked-alt mr-2 text-info"></i>
+                <i className="fas fa-map-marked-alt mr-2 text-info"></i>
                 {company.address}, {company.city},
                 {company.state && company.state},{company.zip}{" "}
               </p>
             </div>
             <div className="col-md-6">
               <p>
-                <i class="fas fa-phone-square-alt mr-2 text-info"></i>
+                <i className="fas fa-phone-square-alt mr-2 text-info"></i>
                 {company.phone}
               </p>
             </div>
@@ -75,16 +78,16 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
             className="btn btn-light btn-sm mb-3 ml-auto"
             onClick={(e) => addLike(company._id)}
           >
-            <i class="fas fa-thumbs-up"></i>{" "}
+            <i className="fas fa-thumbs-up"></i>{" "}
             {company.likes.length > 0 && company.likes !== undefined && (
               <span> {company.likes.length}</span>
             )}
           </button>
           <button
-            class="btn btn-light btn-sm mb-3"
+            className="btn btn-light btn-sm mb-3"
             onClick={() => removeLike(company._id)}
           >
-            <i class="fas fa-thumbs-down"></i>
+            <i className="fas fa-thumbs-down"></i>
           </button>
         </div>
       ))}
