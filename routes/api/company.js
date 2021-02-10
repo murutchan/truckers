@@ -27,7 +27,7 @@ router.get("/:id", auth, companyController.getUserCompanies);
 router.delete("/:id", auth, companyController.deleteCompany);
 
 //get a single company
-router.get("/:id", auth, companyController.getCompany);
+router.get("/single/:id", auth, companyController.getCompany);
 
 //like buttons @route PUT api/company/like/:id
 router.put("/like/:id", auth, companyController.likeCompany);

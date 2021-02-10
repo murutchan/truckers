@@ -14,9 +14,21 @@ const EditCompany = ({
   company: { company },
 }) => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit } = useForm({
+    companyName: loading || !company.companyName ? "" : company.companyName,
+    address: loading || !company.address ? "" : company.address,
+    city: loading || !company.city ? "" : company.city,
+    state: loading || !company.state ? "" : company.state,
+  });
+  const [formData, setFormData] = useState({
+    companyName: "",
+  });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setFormData({
+      companyName: company.companyName,
+    });
+  }, []);
   const onSubmit = (data) => {
     const {
       address,
@@ -59,6 +71,8 @@ const EditCompany = ({
             name="companyName"
             placeholder="Your company's name"
             required
+            value={companyName}
+            onChange={(e) => onChange(e)}
             ref={register}
           />
         </div>

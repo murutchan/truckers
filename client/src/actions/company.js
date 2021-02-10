@@ -69,7 +69,7 @@ export const getUserCompanies = (id) => async (dispatch) => {
 
 export const getCompany = (id) => async (dispatch) => {
   try {
-    const res = await api.get(`/company/${id}`);
+    const res = await api.get(`/company/single/${id}`);
     dispatch({
       type: GET_COMPANY,
       payload: res.data,
