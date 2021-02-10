@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAllCompanies } from "../../actions/company";
 import { addLike } from "../../actions/company";
 import { removeLike } from "../../actions/company";
+import Pagination from "../company/Pagination";
 import "./company.styles.scss";
 
 const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
@@ -11,9 +12,19 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
     getAllCompanies();
   }, [getAllCompanies]);
 
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage] = useState(5);
+  //Pagination: get current companies
+  const indexOfLast = currentPage * perPage;
+  const indexOfFirst = indexOfLast - perPage;
+  const currentCompanies = companies.slice(indexOfFirst, indexOfLast);
+  //Pagination: change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container">
-      {companies.map((company) => (
+      {currentCompanies.map((company) => (
         <div
           className="container company mb-3 border text-center"
           key={company._id}
@@ -91,6 +102,11 @@ const Companies = ({ companies, getAllCompanies, addLike, removeLike }) => {
           </button>
         </div>
       ))}
+      <Pagination
+        perPage={perPage}
+        companies={companies.length}
+        paginate={paginate}
+      />
     </div>
   );
 };

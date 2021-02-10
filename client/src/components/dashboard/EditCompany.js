@@ -14,21 +14,18 @@ const EditCompany = ({
   company: { company },
 }) => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
-  const { register, handleSubmit } = useForm({
-    companyName: loading || !company.companyName ? "" : company.companyName,
-    address: loading || !company.address ? "" : company.address,
-    city: loading || !company.city ? "" : company.city,
-    state: loading || !company.state ? "" : company.state,
+  const { register, handleSubmit } = useForm({});
+  useEffect(() => {
+    console.log("J+He");
   });
-  const [formData, setFormData] = useState({
-    companyName: "",
+  console.log(company);
+  console.log("hello");
+
+  register({
+    companyName: company.companyName,
+    address: loading || !company.address ? "" : company.address,
   });
 
-  useEffect(() => {
-    setFormData({
-      companyName: company.companyName,
-    });
-  }, []);
   const onSubmit = (data) => {
     const {
       address,
@@ -64,7 +61,7 @@ const EditCompany = ({
       <hr />
       <div className="form-row mt-4">
         <div className="form-group col-md-6">
-          <label for="inputEmail4">Company Name</label>
+          <label>Company Name</label>
           <input
             type="name"
             className="form-control"

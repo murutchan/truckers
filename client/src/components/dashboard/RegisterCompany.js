@@ -45,7 +45,7 @@ const RegisterCompany = ({ createCompany, history }) => {
       <hr />
       <div className="form-row mt-4">
         <div className="form-group col-md-6">
-          <label for="inputEmail4">Company Name</label>
+          <label>Company Name</label>
           <input
             type="name"
             className="form-control"
