@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createCompany } from "../../actions/company";
-import { Redirect } from "react-router-dom";
 
 const RegisterCompany = ({ createCompany, history }) => {
   const states = ["IL", "OH", "IN", "NJ", "IA", "NY", "PA", "CA", "TX"];
